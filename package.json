@@ -1,0 +1,24 @@
+{
+  "name": "sparrow_puppeteer",
+  "version": "1.0.0",
+  "description": "automation using only puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles --verbose"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "dotenv": "^8.0.0",
+    "fs": "0.0.1-security",
+    "jest": "^24.8.0",
+    "lodash": "^4.17.11",
+    "nodemon": "^1.19.0",
+    "path": "^0.12.7",
+    "puppeteer": "^1.15.0"
+  }
+}
