@@ -63,6 +63,22 @@ exports.get_element = async (str_loc, elem=page) => {
         console.log('get_element EXCEPTION OCCURED \n', ex.toString());
     }
 }
+exports.get_attr = async (str_loc, str_attr, elem=page) => {
+    try {
+        await (split_loc = get_locator_info(str_loc));
+        let val = null;
+        switch (split_loc[0].toLowerCase()) {
+            case 'x': 
+                val = await elem.$x(str_loc, e => e.getAttribute(str_attr)) ;
+            case 'css':
+                val =  await elem.$eval(str_loc, e => e.getAttribute(str_attr)) ;
+        }
+        return val;
+    } catch(ex) {
+        console.log('get_attr EXCEPTION OCCURED \n', ex.toString());
+        return null;
+    }
+}
 get_locator_info = (str_raw) => {
     // return gen.split_string(str_raw,'=',1);
     return (str_raw.substr(0,2) == '//') ? ['x', str_raw] : ['css', str_raw];

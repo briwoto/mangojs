@@ -1,6 +1,6 @@
 
-const puppeteer = require('./pre_req').puppeteer;
-const tester = require('./tester');
+const puppeteer = require('../pre_req').puppeteer;
+const tester = require('../tester');
 
 console.log("started SUITE.js");
 jest.setTimeout(36000000);

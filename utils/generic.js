@@ -34,17 +34,32 @@ exports.save_snapshot = async (str_relfilepath, elem=page) => {
         console.log('Save Snapshot "', str_relfilepath,'" EXCEPTION OCCURED \n', ex.toString());
     }
 }
+exports.all = async (arr_values) => {
+    try {
+        for (let i=0; i < arr_values.length; i++) {
+            if (!elem) {
+                return false;
+            }
+            return true;
+        };
+    } catch (ex) {
+        console.log('ALL function - EXCEPTION OCCURED \n', ex.toString());
+        return false;
+
+    }
+}
 set_directory = (str_path) => {
     arr_path = str_path.split('/');
     if (arr_path.length > 1) {
         for (let i=0; i < arr_path.length-1; i++) {
             let val = arr_path[i];
-            str_dir = (!i) ? (global.root_dir + '/'+process.env.SNAPSHOTS + '/' + val) : (str_dir + '/' + val);
-            console.log("DIR:", str_dir);
-            try {
-                fs.statSync(str_dir);
-            } catch(e) {
-                fs.mkdirSync(str_dir);
+            if (val.length) {
+                str_dir = (!i) ? (global.root_dir + '/'+process.env.SNAPSHOTS + '/' + val) : (str_dir + '/' + val);
+                try {
+                    fs.statSync(str_dir);
+                } catch(e) {
+                    fs.mkdirSync(str_dir);
+                }
             }
         }
     }
