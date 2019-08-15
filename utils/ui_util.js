@@ -1,85 +1,131 @@
 
 const gen = require('./generic');
+const {By, Key, until} = require('selenium-webdriver');
 
-exports.wait_for_element = async (str_loc) => {
+get_locator_info = (str_raw) => {
+    return (str_raw.substr(0,2) == '//') ? ['x', str_raw] : ['css', str_raw];
+}
+get_driver = () => {return global.driver};
+exports.wait_for = async (str_loc) => {
     try {
-        await (split_loc = get_locator_info(str_loc));
-        switch (split_loc[0].toLowerCase()) {
-            case 'x': 
-                await page.waitForXPath(split_loc[1]);
+        const driver = await get_driver();
+        await (arr_loc = get_locator_info(str_loc));
+        switch (arr_loc[0].toLowerCase()) {
+            case 'x':
+                await driver.wait(until.elementLocated(By.xpath(arr_loc[1])));
+                break;
+            case 'css':
+                await driver.wait(until.elementLocated(By.css(arr_loc[1])));
+                break;
 
-            case 'css':
-                await page.waitFor(split_loc[1]);
         }
     } catch(ex) {
-        console.log('Wait_For_Element EXCEPTION OCCURED \n', ex.toString());
+        console.log('Wait_For EXCEPTION OCCURED \n', ex.toString());
     }
 }
-exports.click_element = async (str_loc, elem=page) => {
+exports.type = async (str_loc, str_text) => {
     try {
-        await (split_loc = get_locator_info(str_loc));
-        switch (split_loc[0].toLowerCase()) {
-            case 'x': 
-                await (await elem.$x(split_loc[1]))[0].click();
+        const driver = await get_driver();
+        await (arr_loc = get_locator_info(str_loc));
+        switch (arr_loc[0].toLowerCase()) {
+            case 'x':
+                await driver.findElement(By.xpath(arr_loc[1])).sendKeys(str_text);
+                break;
             case 'css':
-                await (await elem.$(split_loc[1])).click();
+                await driver.findElement(By.css(arr_loc[1])).sendKeys(str_text);
+                break;
         }
     } catch(ex) {
-        console.log('Click_Element EXCEPTION OCCURED \n', ex.toString());
+        console.log('Type text EXCEPTION OCCURED \n', ex.toString());
     }
 }
-exports.type = async (str_loc, str_val) => {
+exports.click = async (str_loc) => {
     try {
-        await (split_loc = get_locator_info(str_loc));
-        await page.type(split_loc[1], str_val);
-    } catch(ex) {
-        console.log('Jesteer "Type" function EXCEPTION OCCURED \n', ex.toString());
-    }
-}
-exports.get_web_elements = async (str_loc, elem=page) => {
-    try {
-        await (split_loc = get_locator_info(str_loc));
-        switch (split_loc[0].toLowerCase()) {
-            case 'x': 
-                arr_obj = await elem.$x(split_loc[1]);
+        const driver = await get_driver();
+        await (arr_loc = get_locator_info(str_loc));
+        switch (arr_loc[0].toLowerCase()) {
+            case 'x':
+                await driver.findElement(By.xpath(arr_loc[1])).click();
+                break;
             case 'css':
-                arr_obj = await elem.$$(split_loc[1]);
-        }
-        return arr_obj;
-    } catch(ex) {
-        console.log('get_web_elements EXCEPTION OCCURED \n', ex.toString());
-    }
-}
-exports.get_element = async (str_loc, elem=page) => {
-    try {
-        await (split_loc = get_locator_info(str_loc));
-        switch (split_loc[0].toLowerCase()) {
-            case 'x': 
-                return ((await elem.$x(split_loc[1]))[0]);
-            case 'css':
-                return (await elem.$(split_loc[1]));
+                await driver.findElement(By.css(arr_loc[1])).click();
+                break;
         }
     } catch(ex) {
-        console.log('get_element EXCEPTION OCCURED \n', ex.toString());
+        console.log('Click text EXCEPTION OCCURED \n', ex.toString());
     }
 }
-exports.get_attr = async (str_loc, str_attr, elem=page) => {
+exports.get_element = async (str_loc) => {
     try {
-        await (split_loc = get_locator_info(str_loc));
-        let val = null;
-        switch (split_loc[0].toLowerCase()) {
-            case 'x': 
-                val = await elem.$x(str_loc, e => e.getAttribute(str_attr)) ;
+        const driver = await get_driver();
+        await (arr_loc = get_locator_info(str_loc));
+        switch (arr_loc[0].toLowerCase()) {
+            case 'x':
+                await ( obj = driver.findElement(By.xpath(arr_loc[1])) );
+                break;
             case 'css':
-                val =  await elem.$eval(str_loc, e => e.getAttribute(str_attr)) ;
+                await ( obj = driver.findElement(By.css(arr_loc[1])) );
+                break;
         }
-        return val;
+        return obj;
     } catch(ex) {
-        console.log('get_attr EXCEPTION OCCURED \n', ex.toString());
+        console.log('Type text EXCEPTION OCCURED \n', ex.toString());
         return null;
     }
 }
-get_locator_info = (str_raw) => {
-    // return gen.split_string(str_raw,'=',1);
-    return (str_raw.substr(0,2) == '//') ? ['x', str_raw] : ['css', str_raw];
+exports.get_elements = async (str_loc) => {
+    try {
+        const driver = await get_driver();
+        await (arr_loc = get_locator_info(str_loc));
+        switch (arr_loc[0].toLowerCase()) {
+            case 'x':
+                await ( obj = driver.findElements(By.xpath(arr_loc[1])) );
+                break;
+            case 'css':
+                await ( obj = driver.findElements(By.css(arr_loc[1])) );
+                break;
+        }
+        return obj;
+    } catch(ex) {
+        console.log('Type text EXCEPTION OCCURED \n', ex.toString());
+        return null;
+    }
 }
+exports.get_attribute = async (str_loc, str_text) => {
+    try {
+        const driver = await get_driver();
+        await (arr_loc = get_locator_info(str_loc));
+        switch (arr_loc[0].toLowerCase()) {
+            case 'x':
+                await ( obj = driver.findElement(By.xpath(arr_loc[1])) );
+                break;
+            case 'css':
+                await ( obj = driver.findElement(By.css(arr_loc[1])) );
+                break;
+        }
+        return (str_text.toLowerCase().indexOf(["text", "innertext"])) ? obj.getText() : obj.getAttribute(str_text)
+    } catch(ex) {
+        console.log('Type text EXCEPTION OCCURED \n', ex.toString());
+        return null;
+    }
+}
+exports.wait_for_page = async () => {
+    try {
+        const driver = await get_driver();
+        await driver.wait(until.executeScript("return document.readyState").equals("complete") );
+    } catch(ex) {
+        console.log('Type text EXCEPTION OCCURED \n', ex.toString());
+        return null;
+    }
+}
+
+/*
+driver.switchTo().window('windowName');
+driver.switchTo().frame('frameName');
+var alert = driver.switchTo().alert(); alert.accept();
+To reiterate: “navigate().to()” and “get()” do exactly the same thing. But
+The “navigate” interface also exposes the ability to move backwards and forwards in your browser’s history:
+driver.navigate().to('http://www.example.com');
+driver.navigate().forward();
+driver.navigate().back();
+*/
