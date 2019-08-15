@@ -1,7 +1,7 @@
 {
-  "name": "sparrow_puppeteer",
+  "name": "mango_js",
   "version": "1.0.0",
-  "description": "automation using only puppeteer",
+  "description": "test automation framework suite built over Jest, Selenium and Superagent",
   "main": "index.js",
   "scripts": {
     "test": "jest --detectOpenHandles --verbose"
@@ -9,16 +9,23 @@
   "jest": {
     "verbose": true
   },
+  "chromeOptions": {
+    "args": [
+      "--DNS-prefetch-disable"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "assert": "^1.4.1",
+    "chromedriver": "^75.0.1",
     "dotenv": "^8.0.0",
     "fs": "0.0.1-security",
     "jest": "^24.8.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "nodemon": "^1.19.0",
     "path": "^0.12.7",
-    "puppeteer": "^1.15.0"
+    "selenium-webdriver": "^4.0.0-alpha.4",
+    "superagent": "^5.1.0"
   }
 }
