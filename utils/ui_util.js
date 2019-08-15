@@ -3,9 +3,17 @@ const gen = require('./generic');
 const {By, Key, until} = require('selenium-webdriver');
 
 get_locator_info = (str_raw) => {
-    return (str_raw.substr(0,2) == '//') ? ['x', str_raw] : ['css', str_raw];
+    return (str_raw.substr(0,2) === '//') ? ['x', str_raw] : ['css', str_raw];
 }
 get_driver = () => {return global.driver};
+exports.goto = async  (str_path) => {
+    try {
+        const driver = await get_driver();
+        await driver.get(str_path);
+    } catch (e) {
+        console.log('Goto', str_path, 'EXCEPTION OCCURED: ', e.toString())
+    }
+}
 exports.wait_for = async (str_loc) => {
     try {
         const driver = await get_driver();
