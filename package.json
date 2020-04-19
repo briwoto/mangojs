@@ -1,0 +1,30 @@
+{
+	"name": "mango_js",
+	"version": "2.0.0",
+	"description": "BDD based test automation framework suite built over cucumber-js, Selenium and Superagent",
+	"scripts": {
+		"bvt": "cucumber-js features/**/bvt.feature",
+		"expo": "cucumber-js features/expo --tags @high --format json:testreport.json",
+		"subo": "cucumber-js features/subo",
+		"debug": "node --inspect=1337 --debug-brk --nolazy node_modules/cucumber/bin/cucumber-js --tags @ui --format json:testreport.json",
+		"dummy": "cucumber-js */**/dummy.feature --format json:testreport.json"
+	},
+	"chromeOptions": {
+		"args": [ "--DNS-prefetch-disable" ]
+	},
+	"author": "Rahul Singh",
+	"license": "ISC",
+	"dependencies": {
+		"assert": "^1.4.1",
+		"chromedriver": "^80.0.0",
+		"dotenv": "^8.0.0",
+		"fs": "0.0.1-security",
+		"lodash": "^4.17.15",
+		"path": "^0.12.7",
+		"selenium-webdriver": "^4.0.0-alpha.5",
+		"superagent": "^5.1.0"
+	},
+	"devDependencies": {
+		"cucumber": "^6.0.5"
+	}
+}

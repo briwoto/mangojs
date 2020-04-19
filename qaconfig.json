@@ -1,0 +1,18 @@
+{
+	"dev": {},
+	"staging": {},
+	"prod": {
+		"user": {
+			"baseurl_ui": "phptravels.net",
+			"baseurl_api": "",
+			"E-mail": "autouser@expertlead.de",
+			"Password": "demouser"
+		},
+		"admin": {
+			"baseurl_ui": "phptravels.net/admin",
+			"baseurl_api": "",
+			"E-mail": "admin@phptravels.com",
+			"Password": "demoadmin"
+		}
+	}
+}
