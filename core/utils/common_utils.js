@@ -85,17 +85,39 @@ exports.get_data_sync = (str_filename) => {
 // if the <str_key> does not exist then this function will create the <str_key>
 // <str_filename> should be the relative filename wrt the root directory
 // i.e. for example "./api/data/runtime.json"
-exports.update_json = async (str_filename, str_key, str_val) => {
+exports.update_json_file = async (str_filename, str_key = null, str_val = null) => {
 	try {
 		let json_data = JSON.parse(await this.get_data(str_filename));
-		json_data[str_key] = str_val;
+		if (!str_key) {
+			json_data = {};
+		} else {
+			json_data[str_key] = str_val;
+		}
 		fs.writeFile(path.join(root_dir, str_filename), JSON.stringify(json_data), 'utf8', (err) => {
 			if (err) {
-				return err;
+				console.log(err);
 			}
 		});
 	} catch (ex) {
-		console.log('update_json function - EXCEPTION OCCURED \n', ex.toString());
+		console.log('update_json function - EXCEPTION OCCURED \n', String(ex));
+		return null;
+	}
+};
+
+// This function replaces the values in the json object
+// It takes two parameters: The target json object; And an array of key value pairs
+// The array should be of the format: "[ [key1, value1], [key2, value2], [key3, value3] ]"
+// If the key doesn't exist, it creates the key in the target json object
+// The function returns the target json object or null (in case of EXCEPTION)
+exports.update_json_values = async (target_json = {}, ar_val = {}) => {
+	try {
+		for (i in ar_val) {
+			row = ar_val[i];
+			target_json[row[0]] = row[1];
+		}
+		return target_json;
+	} catch (err) {
+		console.log(`Update JSON - EXCEPTION OCCURED:'n${String(err)}`);
 		return null;
 	}
 };

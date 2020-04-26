@@ -27,3 +27,20 @@ exports.login = async (username = null, password = null, fn) => {
 		return fn(false);
 	}
 };
+exports.create_user = async (data, fn) => {
+	try {
+		let service = services.users.create_user;
+		service.uri = process.env.baseurl_api + service.endpoint;
+		service.payload = await common.update_json_values(service.payload, data);
+		const res = await service.run_service();
+		if (!res.body) {
+			console.log('Create user failed. No body in response');
+			return fn(false);
+		}
+		await common.update_json_file('data/temp.json', 'created_user', res.body);
+		return fn(true);
+	} catch (err) {
+		console.log(`Create user - EXCEPTION OCCURED:\n${String(err)}`);
+		return fn(false);
+	}
+};

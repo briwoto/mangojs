@@ -6,8 +6,8 @@ module.exports = {
 	},
 	users: {
 		list_users: new Service('/users', 'GET', { needparams: true, params: [ 'page' ] }),
-		single_user: new Service('/api/users/~{user_count}', 'GET'),
-		create_user: new Service('/users', 'POST', { payload: 'new_user' }),
+		get_user: new Service('/users/~{user_id}', 'GET'),
+		create_user: new Service('/users', 'POST', { payload: 'create_user' }),
 		update_user: new Service('/users', 'PUT', { payload: 'update_user' }),
 		delete_user: new Service('/users/~{user_id}', 'DELETE')
 	}

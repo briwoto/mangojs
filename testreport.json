@@ -9,10 +9,10 @@
     "uri": "features/api.feature",
     "elements": [
       {
-        "id": "testing-api;scenario-name",
+        "id": "testing-api;create-user",
         "keyword": "Scenario",
         "line": 11,
-        "name": "Scenario name",
+        "name": "Create user",
         "tags": [
           {
             "name": "@api",
@@ -33,29 +33,29 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2000000
+              "duration": 12000000
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
             "line": 8,
-            "name": "user is able to login",
+            "name": "I am able to login",
             "match": {
               "location": "features/step_definitions/api.steps.js:10"
             },
             "result": {
               "status": "passed",
-              "duration": 652000000
+              "duration": 1840000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 12,
-            "name": "user runs a dummy step",
+            "name": "I run a dummy step",
             "match": {
-              "location": "features/step_definitions/api.steps.js:15"
+              "location": "features/step_definitions/api.steps.js:20"
             },
             "result": {
               "status": "passed",

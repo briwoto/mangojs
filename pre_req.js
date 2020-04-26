@@ -2,7 +2,7 @@ console.log('PRE-REQ CALLED');
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 
-const generic = require('./core/utils/common_utils');
+const common = require('./core/utils/common_utils');
 const _ = require('lodash');
 
 const globalVariables = _.pick(global, [ 'browser', 'page', 'By', 'Key', 'until', 'driver' ]);
@@ -37,23 +37,10 @@ exports.ui_setup = async () => {
 	}
 };
 exports.init_env = async () => {
-	const json_config = JSON.parse(await generic.get_data('qaconfig.json'));
+	const json_config = JSON.parse(await common.get_data('qaconfig.json'));
 	const json_env_vars = json_config[process.env.EXEC_ENV.toLowerCase()][process.env.PROJECT_KEY.toLowerCase()];
 	for (let k in json_env_vars) {
 		process['env'][k] = json_env_vars[k];
 	}
-};
-exports.platform_login_ui = async () => {
-	try {
-		const json_config = JSON.parse(await generic.get_data('qaconfig.json'));
-		let arr_codes = json_config.backup_codes_available;
-		if (!arr_codes.length) {
-			console.log('No backup codes exist. Terminating Program');
-			process.exit();
-		}
-		process.env.BACKUP_CODE = arr_codes.pop();
-		await generic.update_json('qaconfig.json', 'backup_codes_available', arr_codes);
-	} catch (ex) {
-		console.log('Platform login -- EXCEPTION OCCURED', ex.toString());
-	}
+	common.update_json_file('data/temp.json', null, null);
 };
