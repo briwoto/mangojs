@@ -29,10 +29,10 @@ RUN apt-get install -y default-jre && npm install && npm install chromedriver &&
 
 EXPOSE      4444
 
-ENTRYPOINT  [ "npm", "run", "expo" ]
+ENTRYPOINT  [ "npm", "run", "demo_api" ]
 # ENTRYPOINT  [ "npx", "cucumber-js", "features/expo/dashboard.feature" ]
 
-ENV EXEC_ENV=staging
+ENV EXEC_ENV=prod
 ENV BACKUP_CODE=
-ENV PROJECT_KEY=expo
+ENV PROJECT_KEY=demo_api
 ENV RUN_HEADLESS=true
