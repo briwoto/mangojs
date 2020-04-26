@@ -1,15 +1,14 @@
-const Service = require('../core/utils/api_util').Service;
+const Service = require('../core/utils/api_utils').Service;
 
 module.exports = {
 	auth: {
-		create_token: new Service('/api/auth/token', 'POST'),
-		get_refresh_token: new Service('/api/auth/token/refresh', 'GET'),
-		register_user: new Service('/api/users', 'POST', { payload: 'register_user' }),
-		verify_registration_token: new Service('api/users/verify', 'GET', { needparams: true }),
-		complete_partial_registration: new Service('api/users/~{id}', 'GET'),
-		get_dashboard_token: new Service('api/subscription/~{id1}/dashboards/dashboard/~{id2}', 'GET')
+		login: new Service('/login', 'POST', { payload: 'user_creds' })
 	},
 	users: {
-		get_user_subscriptions: new Service('/api/subscriptions', 'GET')
+		list_users: new Service('/users', 'GET', { needparams: true, params: [ 'page' ] }),
+		single_user: new Service('/api/users/~{user_count}', 'GET'),
+		create_user: new Service('/users', 'POST', { payload: 'new_user' }),
+		update_user: new Service('/users', 'PUT', { payload: 'update_user' }),
+		delete_user: new Service('/users/~{user_id}', 'DELETE')
 	}
 };

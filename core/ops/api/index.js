@@ -1,5 +1,3 @@
-
 module.exports = {
-    "auth" : require('./auth'),
-    "sub" : require('./subscription')
-}
+	ops: require('./api_ops')
+};

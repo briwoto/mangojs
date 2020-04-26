@@ -2,7 +2,7 @@ console.log('PRE-REQ CALLED');
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 
-const generic = require('./utils/common_utils');
+const generic = require('./core/utils/common_utils');
 const _ = require('lodash');
 
 const globalVariables = _.pick(global, [ 'browser', 'page', 'By', 'Key', 'until', 'driver' ]);

@@ -1,0 +1,69 @@
+[
+  {
+    "description": "    Writing description is optional\n    As a demo user\n    I want to run API cases\n    So that I can verify APIs",
+    "keyword": "Feature",
+    "name": "Testing API",
+    "line": 1,
+    "id": "testing-api",
+    "tags": [],
+    "uri": "features/api.feature",
+    "elements": [
+      {
+        "id": "testing-api;scenario-name",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "Scenario name",
+        "tags": [
+          {
+            "name": "@api",
+            "line": 10
+          },
+          {
+            "name": "@high",
+            "line": 10
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "features/support/hooks.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "user is able to login",
+            "match": {
+              "location": "features/step_definitions/api.steps.js:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 652000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 12,
+            "name": "user runs a dummy step",
+            "match": {
+              "location": "features/step_definitions/api.steps.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

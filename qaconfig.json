@@ -5,14 +5,20 @@
 		"user": {
 			"baseurl_ui": "phptravels.net",
 			"baseurl_api": "",
-			"E-mail": "autouser@expertlead.de",
-			"Password": "demouser"
+			"email": "autouser@expertlead.de",
+			"password": "demouser"
 		},
 		"admin": {
 			"baseurl_ui": "phptravels.net/admin",
 			"baseurl_api": "",
-			"E-mail": "admin@phptravels.com",
-			"Password": "demoadmin"
+			"email": "admin@phptravels.com",
+			"password": "demoadmin"
+		},
+		"demo_api": {
+			"baseurl_ui": "",
+			"baseurl_api": "https://reqres.in/api",
+			"email": "eve.holt@reqres.in",
+			"password": "cityslicka"
 		}
 	}
 }
