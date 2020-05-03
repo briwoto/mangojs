@@ -33,7 +33,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 12000000
+              "duration": 2000000
             }
           },
           {
@@ -46,16 +46,75 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1840000000
+              "duration": 283000000
             }
           },
           {
-            "arguments": [],
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "Field",
+                      "Value"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "name",
+                      "John Doe"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "job",
+                      "Tester"
+                    ]
+                  }
+                ]
+              }
+            ],
             "keyword": "When ",
             "line": 12,
-            "name": "I run a dummy step",
+            "name": "I create the following user",
             "match": {
-              "location": "features/step_definitions/api.steps.js:20"
+              "location": "features/step_definitions/api.steps.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 157000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "Field",
+                      "Value"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "name",
+                      "John Doe"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "job",
+                      "Tester"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "a user should be created with the following details",
+            "match": {
+              "location": "features/step_definitions/api.steps.js:23"
             },
             "result": {
               "status": "passed",

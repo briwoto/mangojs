@@ -14,7 +14,7 @@
 			"email": "admin@phptravels.com",
 			"password": "demoadmin"
 		},
-		"demo_api": {
+		"demo": {
 			"baseurl_ui": "",
 			"baseurl_api": "https://reqres.in/api",
 			"email": "eve.holt@reqres.in",

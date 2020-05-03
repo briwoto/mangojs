@@ -4,7 +4,9 @@
 	"description": "BDD based test automation framework suite built over cucumber-js, Selenium and Superagent",
 	"scripts": {
 		"bvt": "cucumber-js features/**/bvt.feature",
-		"demo_api": "cucumber-js features/api.feature --tags @high --format json:testreport.json",
+		"api": "cucumber-js */*api.feature --tags @high --format json:testreport.json",
+		"ui": "cucumber-js */*ui.feature --tags @high --format json:testreport.json",
+		"demo": "cucumber-js features/ --tags @high --format json:testreport.json",
 		"debug": "node --inspect=1337 --debug-brk --nolazy node_modules/cucumber/bin/cucumber-js --tags @ui --format json:testreport.json",
 		"dummy": "cucumber-js */**/dummy.feature --format json:testreport.json"
 	},
