@@ -1,6 +1,7 @@
 console.log('PRE-REQ CALLED');
-const { Builder, By, Key, until } = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
+const { Builder, By, Key, until } = require('selenium-webdriver'),
+	chrome = require('selenium-webdriver/chrome'),
+	temp = require('./data/temp');
 
 const common = require('./core/utils/common_utils');
 const _ = require('lodash');
@@ -42,5 +43,5 @@ exports.init_env = async () => {
 	for (let k in json_env_vars) {
 		process['env'][k] = json_env_vars[k];
 	}
-	common.update_json_file('data/temp.json', null, null);
+	temp.data = {};
 };

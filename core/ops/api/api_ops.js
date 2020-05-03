@@ -1,6 +1,7 @@
 const api = require('../../utils/api_utils'),
 	services = require('../../../data/description'),
-	common = require('../../utils/common_utils');
+	common = require('../../utils/common_utils'),
+	temp = require('../../../data/temp');
 
 exports.login = async (username = null, password = null, fn) => {
 	try {
@@ -37,7 +38,7 @@ exports.create_user = async (data, fn) => {
 			console.log('Create user failed. No body in response');
 			return fn(false);
 		}
-		await common.update_json_file('data/temp.json', 'created_user', res.body);
+		temp.data['created_user'] = res.body;
 		return fn(true);
 	} catch (err) {
 		console.log(`Create user - EXCEPTION OCCURED:\n${String(err)}`);
