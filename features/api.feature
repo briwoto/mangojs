@@ -9,9 +9,11 @@ Feature: Testing API
 
     @api @high
     Scenario: Create user
-        When I run a dummy step
-# When I create the following user
-#     | Field | Value    |
-#     | name  | John Doe |
-#     | job   | Tester   |
-# Then the created user should exist
+        When I create the following user
+            | Field | Value    |
+            | name  | John Doe |
+            | job   | Tester   |
+        Then a user should be created with the following details
+            | Field | Value    |
+            | name  | John Doe |
+            | job   | Tester   |

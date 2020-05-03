@@ -44,3 +44,11 @@ exports.create_user = async (data, fn) => {
 		return fn(false);
 	}
 };
+exports.verify_created_user = async (data, fn) => {
+	try {
+		return fn(true);
+	} catch (err) {
+		console.log(`Verify created user - EXCEPTION OCCURED:\n${String(err)}`);
+		return fn(false);
+	}
+};

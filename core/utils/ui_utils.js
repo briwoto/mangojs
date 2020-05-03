@@ -51,12 +51,15 @@ exports.goto = async (str_path) => {
 		console.log('Goto', str_path, 'EXCEPTION OCCURED: ', e.toString());
 	}
 };
-exports.get_url = async () => {
+exports.get_url = async (path = 'absolute') => {
 	try {
 		const driver = await get_driver();
+		if (path === 'relative') {
+			return await driver.getPath();
+		}
 		return await driver.getCurrentUrl();
-	} catch (e) {
-		console.log('Get URL', str_path, 'EXCEPTION OCCURED: ', e.toString());
+	} catch (err) {
+		console.log('Get URL', str_path, 'EXCEPTION OCCURED: ', String(err));
 	}
 };
 exports.wait_for = async (str_loc) => {

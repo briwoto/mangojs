@@ -20,3 +20,8 @@ When('I create the following user', async function(table) {
 When('I run a dummy step', async function() {
 	assert(true);
 });
+Then('a user should be created with the following details', async function(table) {
+	await api.ops.verify_created_user(table.rows(), function(val) {
+		assert(val);
+	});
+});
