@@ -5,8 +5,8 @@ exports.split_string = (str_string, str_limiter, str_limit = 1) => {
 	try {
 		const str_regex = new RegExp(str_limiter + '(.+)');
 		return str_string.split(str_regex, str_limit + 1);
-	} catch (ex) {
-		console.log('split string EXCEPTION occured', ex.toString());
+	} catch (err) {
+		console.log(`split string EXCEPTION occured:\n${String(err)}`);
 	}
 };
 exports.sleep = (int_seconds = 1) => {
@@ -21,8 +21,8 @@ exports.substitute = (str_target, obj_param) => {
 			}
 		}
 		return str_target;
-	} catch (ex) {
-		console.log('"substitute" function EXCEPTION occured', ex.toString());
+	} catch (err) {
+		console.log(`"substitute" function EXCEPTION occured:\n${String(err)}`);
 		return null;
 	}
 };
@@ -31,8 +31,8 @@ exports.save_snapshot = async (str_relfilepath, elem = page) => {
 		set_directory(str_relfilepath);
 		console.log('dirname is ', global.root_dir);
 		await elem.screenshot({ path: global.root_dir + '/' + process.env.SNAPSHOTS + '/' + str_relfilepath });
-	} catch (ex) {
-		console.log('Save Snapshot "', str_relfilepath, '" EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Save Snapshot "${str_relfilepath}" EXCEPTION OCCURED:\n${String(err)}`);
 	}
 };
 exports.all = async (arr_values) => {
@@ -43,8 +43,8 @@ exports.all = async (arr_values) => {
 			}
 			return true;
 		}
-	} catch (ex) {
-		console.log('ALL function - EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`ALL function - EXCEPTION OCCURED:\n${String(err)}`);
 		return false;
 	}
 };
@@ -67,16 +67,16 @@ set_directory = (str_path) => {
 exports.get_data = async (str_filename) => {
 	try {
 		return fs.readFileSync(path.join(root_dir, str_filename), 'utf8');
-	} catch (ex) {
-		console.log('Get_data function - EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Get_data function - EXCEPTION OCCURED:\n${String(err)}`);
 		return null;
 	}
 };
 exports.get_data_sync = (str_filename) => {
 	try {
 		return fs.readFileSync(path.join(root_dir, str_filename), 'utf8');
-	} catch (ex) {
-		console.log('Get_data_sync function - EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Get_data_sync function - EXCEPTION OCCURED:\n${String(err)}`);
 		return null;
 	}
 };
@@ -98,8 +98,8 @@ exports.update_json_file = async (str_filename, str_key = null, str_val = null) 
 				console.log(err);
 			}
 		});
-	} catch (ex) {
-		console.log('update_json function - EXCEPTION OCCURED \n', String(ex));
+	} catch (err) {
+		console.log(`update_json function - EXCEPTION OCCURED:\n${String(ex)}`);
 		return null;
 	}
 };
@@ -117,7 +117,7 @@ exports.update_json_values = async (target_json = {}, ar_val = {}) => {
 		}
 		return target_json;
 	} catch (err) {
-		console.log(`Update JSON - EXCEPTION OCCURED:'n${String(err)}`);
+		console.log(`Update JSON - EXCEPTION OCCURED:\n${String(err)}`);
 		return null;
 	}
 };
@@ -132,8 +132,8 @@ exports.compare_arrays = async (arr1, arr2) => {
 			console.log(`compare array failed. \narr1=${arr1}\narr2=${arr2}`);
 		}
 		return false;
-	} catch (ex) {
-		console.log('compare arrays - EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`compare arrays - EXCEPTION OCCURED \n:${String(err)}`);
 		return false;
 	}
 };

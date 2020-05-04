@@ -32,8 +32,8 @@ exports.ui_setup = async () => {
 		let driver = new Builder().forBrowser('chrome').setChromeOptions(ops).build();
 		await (global['driver'] = driver);
 		console.log('WEB DRIVER IS READY');
-	} catch (ex) {
-		console.log('UI setup -- EXCEPTION OCCURED', ex.toString(), '\nTerminating program');
+	} catch (err) {
+		console.log(`UI setup - EXCEPTION OCCURED:\n${String(err)}\nTerminating program`);
 		process.exit();
 	}
 };

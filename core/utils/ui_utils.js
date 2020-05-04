@@ -17,8 +17,8 @@ exports.wait_for_page_load = async () => {
 				return readyState === 'complete';
 			});
 		});
-	} catch (ex) {
-		console.log('Type text EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Type text EXCEPTION OCCURED \n'${String(err)}`);
 		return null;
 	}
 };
@@ -27,8 +27,8 @@ exports.execute = async (str_script) => {
 		const driver = await get_driver();
 		const obj_ret = await driver.executeScript(str_script);
 		return obj_ret;
-	} catch (ex) {
-		console.log('Execute JS EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Execute JS EXCEPTION OCCURED \n${String(err)}`);
 		return null;
 	}
 };
@@ -39,16 +39,16 @@ exports.refresh = async (hardRefresh = false) => {
 		await common.sleep(1);
 		await this.wait_for_page_load();
 		await common.sleep(1);
-	} catch (error) {
-		console.log(`refresh page -- EXCEPTION OCCURED \n${error.toString()}`);
+	} catch (err) {
+		console.log(`refresh page -- EXCEPTION OCCURED \n${String(err)}`);
 	}
 };
 exports.goto = async (str_path) => {
 	try {
 		const driver = await get_driver();
 		await driver.get(str_path);
-	} catch (e) {
-		console.log('Goto', str_path, 'EXCEPTION OCCURED: ', e.toString());
+	} catch (err) {
+		console.log(`Goto${str_path} - EXCEPTION OCCURED:\n${String(err)}`);
 	}
 };
 exports.get_url = async (path = 'absolute') => {
@@ -59,53 +59,7 @@ exports.get_url = async (path = 'absolute') => {
 		}
 		return await driver.getCurrentUrl();
 	} catch (err) {
-		console.log('Get URL', str_path, 'EXCEPTION OCCURED: ', String(err));
-	}
-};
-exports.wait_for = async (str_loc) => {
-	try {
-		const driver = await get_driver();
-		await (arr_loc = get_locator_info(str_loc));
-		switch (arr_loc[0].toLowerCase()) {
-			case 'x':
-				await driver.wait(until.elementLocated(By.xpath(arr_loc[1])));
-				break;
-			case 'css':
-				await driver.wait(until.elementLocated(By.css(arr_loc[1])));
-				break;
-		}
-		return true;
-	} catch (ex) {
-		console.log('Wait_For EXCEPTION OCCURED \n', ex.toString());
-		return false;
-	}
-};
-exports.type = async (locator, str_text) => {
-	try {
-		let elem = typeof locator == 'string' ? await this.get_element(locator) : locator;
-		await elem.sendKeys(str_text);
-	} catch (ex) {
-		console.log(`Type text for ${locator} EXCEPTION OCCURED \n${ex.toString()}`);
-	}
-};
-exports.click = async (locator, parent = null) => {
-	try {
-		const elem = typeof locator == 'string' ? await this.get_element(locator, parent) : locator;
-		await elem.click();
-		return true;
-	} catch (ex) {
-		console.log(`Click text "${locator}" EXCEPTION OCCURED \n${ex.toString()}`);
-		return null;
-	}
-};
-exports.click_and_wait = async (str_loc_click, str_loc_wait) => {
-	try {
-		await this.click(str_loc_click);
-		await common.sleep(1);
-		await this.wait_for(str_loc_wait);
-		await common.sleep(1);
-	} catch (ex) {
-		console.log('Click and wait', str_loc_click, str_loc_wait, ': EXCEPTION OCCURED - ', ex.toLowerCase());
+		console.log(`Get URL${str_path} EXCEPTION OCCURED:\n${String(err)}`);
 	}
 };
 exports.get_element = async (str_loc, parent = null) => {
@@ -126,8 +80,8 @@ exports.get_element = async (str_loc, parent = null) => {
 				break;
 		}
 		return obj;
-	} catch (ex) {
-		console.log('Get element EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Get element EXCEPTION OCCURED:\n${String(err)}`);
 		return null;
 	}
 };
@@ -149,9 +103,55 @@ exports.get_elements = async (str_loc, parent = null) => {
 				break;
 		}
 		return ar;
-	} catch (ex) {
-		console.log('Get elements EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Get elements EXCEPTION OCCURED:\n${String(err)}`);
 		return null;
+	}
+};
+exports.wait_for = async (str_loc) => {
+	try {
+		const driver = await get_driver();
+		await (arr_loc = get_locator_info(str_loc));
+		switch (arr_loc[0].toLowerCase()) {
+			case 'x':
+				await driver.wait(until.elementLocated(By.xpath(arr_loc[1])));
+				break;
+			case 'css':
+				await driver.wait(until.elementLocated(By.css(arr_loc[1])));
+				break;
+		}
+		return true;
+	} catch (err) {
+		console.log(`Wait_For EXCEPTION OCCURED:\n${String(err)}`);
+		return false;
+	}
+};
+exports.type = async (locator, str_text) => {
+	try {
+		let elem = typeof locator == 'string' ? await this.get_element(locator) : locator;
+		await elem.sendKeys(str_text);
+	} catch (err) {
+		console.log(`Type text for ${locator} EXCEPTION OCCURED:\n${String(err)}`);
+	}
+};
+exports.click = async (locator, parent = null) => {
+	try {
+		const elem = typeof locator == 'string' ? await this.get_element(locator, parent) : locator;
+		await elem.click();
+		return true;
+	} catch (err) {
+		console.log(`Click text "${locator}" EXCEPTION OCCURED:\n${String(err)}`);
+		return null;
+	}
+};
+exports.click_and_wait = async (loc_click, loc_wait, loc_click_parent = null, loc_wait_parent = null) => {
+	try {
+		await this.click(loc_click, loc_click_parent);
+		await common.sleep(1);
+		await this.wait_for(loc_wait, loc_wait_parent);
+		await common.sleep(1);
+	} catch (err) {
+		console.log(`Click and wait ${loc_click}, ${loc_wait} - EXCEPTION OCCURED:\n${String(err)}`);
 	}
 };
 exports.get_attribute = async (locator, str_attr, parent) => {
@@ -160,8 +160,8 @@ exports.get_attribute = async (locator, str_attr, parent) => {
 		return [ 'text', 'innertext' ].indexOf(str_attr.toLowerCase()) >= 0
 			? await elem.getText()
 			: await elem.getAttribute(str_attr);
-	} catch (ex) {
-		console.log('Get attribute', str_attr, '-- EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Get attribute ${str_attr} - EXCEPTION OCCURED:\n${String(err)}`);
 		return null;
 	}
 };
@@ -170,8 +170,8 @@ exports.set_attribute = async (locator, str_attr, str_val, parent = null) => {
 		const elem = typeof locator == 'string' ? await this.get_element(locator, parent) : locator;
 		await elem.setAttribute(str_attr, str_val);
 		return true;
-	} catch (ex) {
-		console.log('Set attribute', str_attr, '-- EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Set attribute ${str_attr} - EXCEPTION OCCURED:\n${String(err)}`);
 		return null;
 	}
 };
@@ -208,7 +208,7 @@ exports.set_input = async (locator, str_val) => {
 		await this.type(locator, str_val);
 		await common.sleep(1);
 		return true;
-	} catch (ex) {
+	} catch (err) {
 		console.log(`Set input - EXCEPTION OCCURED \n${String(ex)}`);
 		return null;
 	}
@@ -221,7 +221,7 @@ exports.search_and_select = async (locator = null, keyDown = true) => {
 			actions = await driver.actions();
 		keyDown ? await actions.sendKeys(Key.DOWN, Key.ENTER).perform() : await actions.sendKeys(Key.ENTER).perform();
 		await common.sleep(1);
-	} catch (ex) {
+	} catch (err) {
 		console.log(`Test search and select for attribute -- EXCEPTION OCCURED\n${String(ex)}`);
 		return null;
 	}
@@ -269,16 +269,16 @@ exports.open_window = async (int_win_index) => {
 		const driver = await get_driver();
 		const arr = await driver.getAllWindowHandles();
 		await driver.switchTo().window(arr[int_win_index]);
-	} catch (ex) {
-		console.log('Open window EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Open window EXCEPTION OCCURED:\n${String(err)}`);
 	}
 };
 exports.maximize_window = async () => {
 	try {
 		const driver = await get_driver();
 		await driver.manage().window().maximize();
-	} catch (ex) {
-		console.log('Maximize window EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`Maximize window EXCEPTION OCCURED:\n${String(err)}`);
 	}
 };
 exports.is_unique_element_present = async (str_identifier, parent = null) => {
@@ -293,8 +293,8 @@ exports.is_unique_element_present = async (str_identifier, parent = null) => {
 			return false;
 		}
 		return true;
-	} catch (ex) {
-		console.log('is Unique element present -- EXCEPTION OCCURED \n', ex.toString());
+	} catch (err) {
+		console.log(`is Unique element present - EXCEPTION OCCURED:\n${String(err)}`);
 		return false;
 	}
 };
