@@ -1,7 +1,8 @@
-const assert = require('assert'),
+const cwd = process.cwd(),
+	assert = require('assert'),
 	{ Given, When, Then } = require('cucumber'),
-	description = require('../../data/description'),
-	api = require('../../core/ops/api');
+	description = require(`${cwd}/data/description`),
+	api = require(`${cwd}/core/ops/api`);
 
 let { setDefaultTimeout } = require('cucumber');
 

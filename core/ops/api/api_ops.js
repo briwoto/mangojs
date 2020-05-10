@@ -1,7 +1,9 @@
-const api = require('../../utils/api_utils'),
-	services = require('../../../data/description'),
-	common = require('../../utils/common_utils'),
-	temp = require('../../../data/temp');
+console.log('API ops called');
+const cwd = process.cwd(),
+	api = require(`${cwd}/core/utils/api_utils`),
+	services = require(`${cwd}/data/description`),
+	common = require(`${cwd}/core/utils/common_utils`),
+	temp = require(`${cwd}/data/temp`);
 
 exports.login = async (username = null, password = null, fn) => {
 	try {

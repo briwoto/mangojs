@@ -1,5 +1,6 @@
 console.log('api utils called');
-const payloads = require('../../data/payload'),
+const cwd = process.cwd(),
+	payloads = require(`${cwd}/data/payload`),
 	superagent = require('superagent');
 
 class Service {

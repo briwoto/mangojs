@@ -1,12 +1,12 @@
 console.log('PRE-REQ CALLED');
-const { Builder, By, Key, until } = require('selenium-webdriver'),
+const cwd = process.cwd(),
+	{ Builder, By, Key, until } = require('selenium-webdriver'),
 	chrome = require('selenium-webdriver/chrome'),
-	temp = require('./data/temp');
+	_ = require('lodash'),
+	temp = require(`${cwd}/data/temp`),
+	common = require(`${cwd}/core/utils/common_utils`),
+	globalVariables = _.pick(global, [ 'browser', 'page', 'By', 'Key', 'until', 'driver' ]);
 
-const common = require('./core/utils/common_utils');
-const _ = require('lodash');
-
-const globalVariables = _.pick(global, [ 'browser', 'page', 'By', 'Key', 'until', 'driver' ]);
 require('dotenv').config();
 global.By = By;
 global.Key = Key;

@@ -74,3 +74,4 @@ typings/
 .next
 .vscode/launch.json
 data/temp.json
+testreport.json

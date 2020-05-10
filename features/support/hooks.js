@@ -1,6 +1,6 @@
-const { Before, After } = require('cucumber');
-const pre_req = require('../../pre_req');
-const ui_util = require('../../core/utils/ui_utils');
+const { cwd = process.cwd(), Before, After } = require('cucumber');
+pre_req = require(`${cwd}/pre_req`);
+const ui_util = require(`${cwd}/core/utils/ui_utils`);
 Before(async function() {
 	await pre_req.init_env();
 	console.log('init env complete');

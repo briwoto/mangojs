@@ -1,4 +1,5 @@
-const Service = require('../core/utils/api_utils').Service;
+const cwd = process.cwd(),
+	Service = require(`${cwd}/core/utils/api_utils`).Service;
 
 module.exports = {
 	auth: {

@@ -1,6 +1,7 @@
 console.log('UI CALLED');
-const common = require('./common_utils');
-const { By, Key, until } = require('selenium-webdriver');
+const cwd = process.cwd(),
+	common = require(`${cwd}/common_utils`),
+	{ By, Key, until } = require('selenium-webdriver');
 
 get_locator_info = (str_raw) => {
 	return str_raw.substr(0, 2) === '//' ? [ 'x', str_raw ] : [ 'css', str_raw ];
