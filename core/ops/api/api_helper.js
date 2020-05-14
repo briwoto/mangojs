@@ -1,6 +1,6 @@
 const cwd = process.cwd(),
-	api = require(`${cwd}/utils/`).api_utils,
-	common = require(`${cwd}/utils/`).common_utils;
+	api = require(`${cwd}/core/utils/api_utils`),
+	common = require(`${cwd}/core/utils/common_utils`);
 
 //This function is used to update the payload with the user data
 //It maps the user input to map.js and adds the mapped_value to the payload
