@@ -20,3 +20,8 @@ When('I click on the {string} button on the {string} page', async function(btn, 
 		assert(val);
 	});
 });
+When('I enter the following details on the {string} page', async function(pagename, table) {
+	await ui.enter_details_onpage(pagename, table.rows(), function(val) {
+		assert(val);
+	});
+});

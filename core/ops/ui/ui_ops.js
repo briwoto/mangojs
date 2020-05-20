@@ -39,3 +39,12 @@ exports.click_button_onpage = async (btn, pagename, fn) => {
 		return fn(false);
 	}
 };
+exports.change_data_onpage = async (pagename, data, fn) => {
+	try {
+		const page = user.pages[pagename];
+		await helper.change_page_data(pagename, page, data);
+	} catch (err) {
+		line(`enter details on "${pagename}" - EXCEPTION OCCURED:\n${String(err)}`);
+		return fn(false);
+	}
+};

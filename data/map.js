@@ -42,7 +42,8 @@ module.exports = {
 							First: 'first',
 							Business: 'business',
 							Economy: 'economy'
-						}
+						},
+						value_identifier: 'option[value="~{val}"]'
 					},
 					from: {
 						identifier: '#s2id_location_from',
