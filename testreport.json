@@ -11,16 +11,16 @@
       {
         "id": "ui-feature;flight-search",
         "keyword": "Scenario",
-        "line": 7,
+        "line": 10,
         "name": "Flight search",
         "tags": [
           {
             "name": "@ui",
-            "line": 6
+            "line": 9
           },
           {
             "name": "@high",
-            "line": 6
+            "line": 9
           }
         ],
         "type": "scenario",
@@ -33,7 +33,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2000000
+              "duration": 3000000
             }
           },
           {
@@ -44,20 +44,46 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1608000000
+              "duration": 2099000000
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 8,
+            "line": 7,
             "name": "I am able to login",
             "match": {
               "location": "features/step_definitions/ui.steps.js:8"
             },
             "result": {
               "status": "passed",
-              "duration": 7003000000
+              "duration": 6300000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I go to the \"Home\" page",
+            "match": {
+              "location": "features/step_definitions/ui.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2042000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "I click on the \"FLIGHTS\" button on the \"Home\" page",
+            "match": {
+              "location": "features/step_definitions/ui.steps.js:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2136000000
             }
           },
           {
@@ -68,7 +94,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 110000000
+              "duration": 120000000
             }
           }
         ]

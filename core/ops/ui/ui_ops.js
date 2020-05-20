@@ -3,7 +3,8 @@ const cwd = process.cwd(),
 	helper = require(`${cwd}/core/ops/ui/helper`),
 	common = require(`${cwd}/core/utils/common_utils`),
 	map = require(`${cwd}/data/map`),
-	user = map.user;
+	user = map.user,
+	line = console.log;
 
 exports.login = async (username = null, password = null, fn) => {
 	try {
@@ -15,7 +16,26 @@ exports.login = async (username = null, password = null, fn) => {
 		await ui.click_and_wait(login.buttons.LOGIN.identifier, user.pages.Account.loc_wait);
 		return fn(true);
 	} catch (err) {
-		console.log(`Login - EXCEPTION OCCURED:\n${String(err)}`);
+		line(`Login - EXCEPTION OCCURED:\n${String(err)}`);
+		return fn(false);
+	}
+};
+exports.open_page = async (pagename, fn) => {
+	try {
+		const page = user.pages[pagename];
+		await ui.goto(process.env.baseurl_ui + page.pathname);
+		await ui.wait_for(page.loc_wait);
+	} catch (err) {
+		line(`Open "${pagename}" page - EXCEPTION OCCURED:\n${String(err)}`);
+		return fn(false);
+	}
+};
+exports.click_button_onpage = async (btn, pagename, fn) => {
+	try {
+		const field = user.pages[pagename].buttons[btn];
+		return fn(await helper.click_onpage(field));
+	} catch (err) {
+		line(`Click "${str_elem}" - EXCEPTION OCCURED:\n${String(err)}`);
 		return fn(false);
 	}
 };

@@ -10,3 +10,13 @@ Given('I am able to login', async function() {
 		assert(val);
 	});
 });
+When('I go to the {string} page', async function(pagename) {
+	await ui.open_page(pagename, function(val) {
+		assert(val);
+	});
+});
+When('I click on the {string} button on the {string} page', async function(btn, pagename) {
+	await ui.click_button_onpage(btn, pagename, function(val) {
+		assert(val);
+	});
+});

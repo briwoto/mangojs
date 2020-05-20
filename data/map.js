@@ -23,7 +23,7 @@ module.exports = {
 					}
 				}
 			},
-			HOME: {
+			Home: {
 				pathname: '/home',
 				loc_wait: '#s2id_location_from',
 				fields: {
@@ -64,6 +64,21 @@ module.exports = {
 				buttons: {
 					search: {
 						identifier: '//button[contains(text(),"Search")]'
+					},
+					HOTELS: {
+						identifier: 'a[data-name="hotels"]'
+					},
+					FLIGHTS: {
+						identifier: 'a[data-name="flights"]'
+					},
+					TOURS: {
+						identifier: 'a[data-name="tours"]'
+					},
+					CARS: {
+						identifier: 'a[data-name="cars"]'
+					},
+					VISA: {
+						identifier: 'a[data-name="visa"]'
 					}
 				}
 			},
