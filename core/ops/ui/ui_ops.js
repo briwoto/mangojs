@@ -1,24 +1,21 @@
-const sel = global.sel;
-const utils = require('../../utils');
+const cwd = process.cwd(),
+	ui = require(`${cwd}/core/utils/ui_utils`),
+	helper = require(`${cwd}/core/ops/ui/helper`),
+	common = require(`${cwd}/core/utils/common_utils`),
+	map = require(`${cwd}/data/map`),
+	user = map.user;
 
-exports.test_login = async (fn) => {
+exports.login = async (username = null, password = null, fn) => {
 	try {
-		bool_result = false;
-		await page.goto(process.env.BASEURL_UI);
-		await utils.generic.sleep(2);
-		await utils.ui_utils.wait_for_element(sel.loginusername);
-		await page.screenshot({ path: './snapshots/login.png' });
-		await utils.ui_utils.type(sel.loginusername, process.env.USERID);
-		await utils.ui_utils.type(sel.loginpassword, process.env.PASSWORD);
-		await utils.ui_utils.click_element(sel.loginbutton);
-		await utils.ui_utils.wait_for_element(sel.chooseAccountPage);
-		bool_result = true;
+		const login = user.pages.Login;
+		await ui.goto(process.env.baseurl_ui + '/login');
+		await ui.wait_for(user.pages.Login.fields.username.identifier);
+		await ui.type(login.fields.username.identifier, username || process.env.email);
+		await ui.type(login.fields.password.identifier, username || process.env.password);
+		await ui.click_and_wait(login.buttons.LOGIN.identifier, user.pages.Account.loc_wait);
+		return fn(true);
 	} catch (err) {
-		console.log(err);
+		console.log(`Login - EXCEPTION OCCURED:\n${String(err)}`);
+		return fn(false);
 	}
-	return fn(bool_result);
-};
-
-exports.choose_account = async () => {
-	console.log('dummy');
 };

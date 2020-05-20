@@ -1,6 +1,6 @@
 console.log('UI CALLED');
 const cwd = process.cwd(),
-	common = require(`${cwd}/common_utils`),
+	common = require(`${cwd}/core/utils/common_utils`),
 	{ By, Key, until } = require('selenium-webdriver');
 
 get_locator_info = (str_raw) => {
@@ -49,7 +49,7 @@ exports.goto = async (str_path) => {
 		const driver = await get_driver();
 		await driver.get(str_path);
 	} catch (err) {
-		console.log(`Goto${str_path} - EXCEPTION OCCURED:\n${String(err)}`);
+		console.log(`Goto "${str_path}" - EXCEPTION OCCURED:\n${String(err)}`);
 	}
 };
 exports.get_url = async (path = 'absolute') => {

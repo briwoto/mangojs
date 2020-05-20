@@ -1,4 +1,5 @@
 module.exports = {
-	ui_utils: require('./ui_util'),
-	generic: require('./generic')
+	api_utils: require('./api_utils'),
+	ui_utils: require('./ui_utils'),
+	common: require('./common_utils')
 };

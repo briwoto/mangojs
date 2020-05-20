@@ -3,9 +3,9 @@
 	"staging": {},
 	"prod": {
 		"user": {
-			"baseurl_ui": "phptravels.net",
+			"baseurl_ui": "https://www.phptravels.net",
 			"baseurl_api": "",
-			"email": "autouser@expertlead.de",
+			"email": "user@phptravels.com",
 			"password": "demouser"
 		},
 		"admin": {

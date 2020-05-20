@@ -8,7 +8,7 @@ let { setDefaultTimeout } = require('cucumber');
 
 setDefaultTimeout(1000 * (Number(process.env.TIMEOUT) | 10));
 
-Given('I am able to login', async function() {
+Given('I am authorized to login', async function() {
 	await api.ops.login(null, null, function(val) {
 		assert(val);
 	});

@@ -1,26 +1,26 @@
 [
   {
-    "description": "    Writing description is optional\n    As a demo user\n    I want to run API cases\n    So that I can verify APIs",
+    "description": "    As an automation engineer\n    I want to run the UI automation Feature\n    So that I can make sure the UI is working as expected",
     "keyword": "Feature",
-    "name": "Testing API",
+    "name": "UI Feature",
     "line": 1,
-    "id": "testing-api",
+    "id": "ui-feature",
     "tags": [],
-    "uri": "features/api.feature",
+    "uri": "features/ui.feature",
     "elements": [
       {
-        "id": "testing-api;create-user",
+        "id": "ui-feature;flight-search",
         "keyword": "Scenario",
-        "line": 11,
-        "name": "Create user",
+        "line": 7,
+        "name": "Flight search",
         "tags": [
           {
-            "name": "@api",
-            "line": 10
+            "name": "@ui",
+            "line": 6
           },
           {
             "name": "@high",
-            "line": 10
+            "line": 6
           }
         ],
         "type": "scenario",
@@ -37,88 +37,38 @@
             }
           },
           {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "features/support/hooks.js:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1608000000
+            }
+          },
+          {
             "arguments": [],
             "keyword": "Given ",
             "line": 8,
             "name": "I am able to login",
             "match": {
-              "location": "features/step_definitions/api.steps.js:10"
+              "location": "features/step_definitions/ui.steps.js:8"
             },
             "result": {
               "status": "passed",
-              "duration": 283000000
+              "duration": 7003000000
             }
           },
           {
-            "arguments": [
-              {
-                "rows": [
-                  {
-                    "cells": [
-                      "Field",
-                      "Value"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "name",
-                      "John Doe"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "job",
-                      "Tester"
-                    ]
-                  }
-                ]
-              }
-            ],
-            "keyword": "When ",
-            "line": 12,
-            "name": "I create the following user",
+            "keyword": "After",
+            "hidden": true,
             "match": {
-              "location": "features/step_definitions/api.steps.js:15"
+              "location": "features/support/hooks.js:17"
             },
             "result": {
               "status": "passed",
-              "duration": 157000000
-            }
-          },
-          {
-            "arguments": [
-              {
-                "rows": [
-                  {
-                    "cells": [
-                      "Field",
-                      "Value"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "name",
-                      "John Doe"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "job",
-                      "Tester"
-                    ]
-                  }
-                ]
-              }
-            ],
-            "keyword": "Then ",
-            "line": 16,
-            "name": "a user should be created with the following details",
-            "match": {
-              "location": "features/step_definitions/api.steps.js:23"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1000000
+              "duration": 110000000
             }
           }
         ]
