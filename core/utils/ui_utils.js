@@ -130,7 +130,14 @@ exports.wait_for = async (str_loc) => {
 exports.type = async (locator, str_text) => {
 	try {
 		let elem = typeof locator == 'string' ? await this.get_element(locator) : locator;
-		await elem.sendKeys(str_text);
+		const patt = /^Keys\./;
+		if (patt.test(str_text)) {
+			str_key = str_text.substr(5);
+			await elem.sendKeys(Key[str_key]);
+			await common.sleep(1);
+		} else {
+			await elem.sendKeys(str_text);
+		}
 	} catch (err) {
 		console.log(`Type text for ${locator} EXCEPTION OCCURED:\n${String(err)}`);
 	}
@@ -155,7 +162,7 @@ exports.click_and_wait = async (loc_click, loc_wait, loc_click_parent = null, lo
 		console.log(`Click and wait ${loc_click}, ${loc_wait} - EXCEPTION OCCURED:\n${String(err)}`);
 	}
 };
-exports.get_attribute = async (locator, str_attr, parent) => {
+exports.get_attribute = async (locator, str_attr, parent = null) => {
 	try {
 		const elem = typeof locator == 'string' ? await this.get_element(locator, parent) : locator;
 		return [ 'text', 'innertext' ].indexOf(str_attr.toLowerCase()) >= 0
@@ -263,6 +270,36 @@ exports.get_attr_at_index = async (str_loc, int_index, str_attr) => {
 		return await ar_elems[int_index].getAttribute(str_attr);
 	} catch (err) {
 		console.log(`get attr at index - EXCEPTION OCCURED \n${err.toString()}`);
+	}
+};
+exports.scroll_to = async (locator, stepx = 0, stepy = 100) => {
+	try {
+		let x = 0,
+			bool_ret = false;
+		let elem = typeof locator == 'string' ? await this.get_element(locator) : locator;
+		const script =
+			'var elem = arguments[0],                 ' +
+			'  box = elem.getBoundingClientRect(),    ' +
+			'  cx = box.left + box.width / 2,         ' +
+			'  cy = box.top + box.height / 2,         ' +
+			'  e = document.elementFromPoint(cx, cy); ' +
+			'for (; e; e = e.parentElement) {         ' +
+			'  if (e === elem)                        ' +
+			'    return true;                         ' +
+			'}                                        ' +
+			'return false;';
+		while (x < 10) {
+			await this.execute(`window.scrollBy(${stepx},${stepy})`);
+			if (await driver.executeScript(script, elem)) {
+				bool_ret = true;
+				break;
+			}
+			x += 1;
+		}
+		return bool_ret;
+	} catch (err) {
+		console.log(`Scroll to element - EXCEPTION OCCURED:\n${String(err)}`);
+		return null;
 	}
 };
 exports.open_window = async (int_win_index) => {
