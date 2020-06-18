@@ -19,7 +19,7 @@ exports.change_page_data = async (pagename, obj_page, data) => {
 			fieldname = data[i][0];
 			val = data[i][1];
 			obj_field = obj_page.fields[fieldname];
-			await this.update_field_value(obj_field);
+			await this.update_field_value(obj_field, val);
 		}
 	} catch (err) {
 		line(`Change data on "${pagename}" page - EXCEPTION OCCURED:\n${String(err)}`);
@@ -31,6 +31,13 @@ exports.update_field_value = async (obj_field, val, parent = null) => {
 		switch (obj_field.type) {
 			case 'text':
 				await ui.type(obj_field.identifier, val);
+				break;
+
+			case 'radio':
+				// curr_val = await ui.get_attribute(`${obj_field.identifier}:checked`, 'value')
+				new_val = obj_field.value_map[val];
+				val_locator = common.substitute(obj_field.identifier, { val: new_val });
+				await ui.click(val_locator, parent);
 				break;
 
 			case 'select':
@@ -52,10 +59,15 @@ exports.update_field_value = async (obj_field, val, parent = null) => {
 						await common.sleep(1);
 					}
 				}
+				await common.sleep(1);
+				break;
+
+			case 'date':
+				await ui.type(obj_field.identifier, val);
 				break;
 
 			default:
-				console.log(`Change field value FAIL. Field type not present in map`);
+				console.log(`Change field value FAIL. Field type ${obj_field.type} not present in map`);
 				return false;
 		}
 	} catch (err) {
