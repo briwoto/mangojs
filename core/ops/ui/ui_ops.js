@@ -33,9 +33,9 @@ exports.open_page = async (pagename, fn) => {
 exports.click_button_onpage = async (btn, pagename, fn) => {
 	try {
 		const field = user.pages[pagename].buttons[btn];
-		return fn(await helper.click_onpage(field));
+		return fn(await helper.click_onpage(pagename, field));
 	} catch (err) {
-		line(`Click "${str_elem}" - EXCEPTION OCCURED:\n${String(err)}`);
+		line(`Click "${btn}" - EXCEPTION OCCURED:\n${String(err)}`);
 		return fn(false);
 	}
 };
