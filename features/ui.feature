@@ -11,8 +11,8 @@ Feature: UI Feature
         When I go to the "Home" page
         And I click on the "FLIGHTS" button on the "Home" page
         And I enter the following details on the "Home" page
-            | Field | Value   |
-            | Trip  | ONE WAY |
-            | From  | DEL     |
-            | To    | AMS     |
+            | Field | Value      |
+            | Trip  | ROUND TRIP |
+            | From  | DEL        |
+            | To    | AMS        |
 # | Depart | 2020-06-18 |

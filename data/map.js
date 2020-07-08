@@ -27,15 +27,15 @@ module.exports = {
 				pathname: '/home',
 				loc_wait: '#s2id_location_from',
 				fields: {
-					trip: {
-						identifier: 'input[name="triptype"]',
+					Trip: {
+						identifier: 'input[value="~{val}"]',
 						type: 'radio',
 						value_map: {
 							'ONE WAY': 'oneway',
 							'ROUND TRIP': 'round'
 						}
 					},
-					class: {
+					Class: {
 						identifier: 'input[name="cabinclass"]',
 						type: 'select',
 						value_map: {
@@ -45,19 +45,19 @@ module.exports = {
 						},
 						value_identifier: 'option[value="~{val}"]'
 					},
-					from: {
-						identifier: '#s2id_location_from',
+					From: {
+						identifier: '#s2id_location_from >a.select2-choice',
 						type: 'search'
 					},
-					to: {
-						identifier: '#s2id_location_to',
+					To: {
+						identifier: '#s2id_location_to>a.select2-choice',
 						type: 'search'
 					},
-					depart: {
+					Depart: {
 						identifier: 'input[name="departure_date"]',
 						type: 'date'
 					},
-					return: {
+					Return: {
 						identifier: 'input[name="reture_date"]',
 						type: 'date'
 					}
