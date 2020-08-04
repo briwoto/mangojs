@@ -74,3 +74,43 @@ exports.update_field_value = async (obj_field, val, parent = null) => {
 		line(`Update field value - EXCEPTION OCCURED:\n${String(err)}`);
 	}
 };
+exports.get_fields_data = async (obj_fields, parent = null) => {
+	try {
+		let obj_data = {};
+		for (key in obj_fields) {
+			field = obj_fields[key];
+			if (parent) {
+				await ui.scroll_to(parent);
+			}
+			await (obj_data[key] = await this.get_data(field.identifier, field.type, parent));
+		}
+		return obj_data;
+	} catch (err) {
+		line(`Get fields data - EXCEPTION OCCURED:\n${String(err)}`);
+		return null;
+	}
+};
+exports.get_data = async (loc, type, parent = null) => {
+	try {
+		if ((await ui.get_elements(loc, parent)).length) {
+			switch (type) {
+				case 'image':
+					val = await ui.get_attribute(loc, 'src', parent);
+					break;
+
+				case 'static_text':
+					val = await ui.get_attribute(loc, 'text', parent);
+					break;
+
+				default:
+					line(`The type "${type}" not handled in the code`);
+					val = null;
+					break;
+			}
+		}
+		return val;
+	} catch (err) {
+		line(`Get data - EXCEPTION OCCURED:\n${String(err)}`);
+		return null;
+	}
+};
