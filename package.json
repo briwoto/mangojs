@@ -11,13 +11,15 @@
 		"dummy": "cucumber-js */**/dummy.feature --format json:testreport.json"
 	},
 	"chromeOptions": {
-		"args": [ "--DNS-prefetch-disable" ]
+		"args": [
+			"--DNS-prefetch-disable"
+		]
 	},
 	"author": "Rahul Singh",
 	"license": "ISC",
 	"dependencies": {
 		"assert": "^1.4.1",
-		"chromedriver": "^80.0.0",
+		"chromedriver": "^86.0.0",
 		"dotenv": "^8.0.0",
 		"fs": "0.0.1-security",
 		"lodash": "^4.17.19",

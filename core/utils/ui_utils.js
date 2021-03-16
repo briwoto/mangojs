@@ -234,6 +234,12 @@ exports.search_and_select = async (locator = null, keyDown = true) => {
 		return null;
 	}
 };
+exports.press = async (str_key) => {
+	const driver = await get_driver();
+	const actions = await driver.actions();
+	await actions.sendKeys(Key.TAB).perform()
+	await common.sleep(1)
+}
 exports.get_element_index = async (str_loc, attr, val, parent) => {
 	try {
 		ar_elems = await this.get_elements(str_loc, parent);

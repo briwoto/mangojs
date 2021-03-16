@@ -33,7 +33,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3000000
+              "duration": 2000000
             }
           },
           {
@@ -44,7 +44,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2099000000
+              "duration": 1372000000
             }
           },
           {
@@ -53,37 +53,24 @@
             "line": 7,
             "name": "I am able to login",
             "match": {
-              "location": "features/step_definitions/ui.steps.js:8"
+              "location": "features/step_definitions/ui.steps.js:7"
             },
             "result": {
               "status": "passed",
-              "duration": 6300000000
+              "duration": 9556000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 11,
-            "name": "I go to the \"Home\" page",
+            "name": "I create an order",
             "match": {
-              "location": "features/step_definitions/ui.steps.js:13"
+              "location": "features/step_definitions/ui.steps.js:28"
             },
             "result": {
               "status": "passed",
-              "duration": 2042000000
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 12,
-            "name": "I click on the \"FLIGHTS\" button on the \"Home\" page",
-            "match": {
-              "location": "features/step_definitions/ui.steps.js:18"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2136000000
+              "duration": 15472000000
             }
           },
           {
@@ -94,7 +81,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 120000000
+              "duration": 54000000
             }
           }
         ]
