@@ -22,7 +22,7 @@
 		"chromedriver": "^86.0.0",
 		"dotenv": "^8.0.0",
 		"fs": "0.0.1-security",
-		"lodash": "^4.17.19",
+		"lodash": "^4.17.21",
 		"path": "^0.12.7",
 		"selenium-webdriver": "^4.0.0-alpha.5",
 		"superagent": "^5.1.0"
