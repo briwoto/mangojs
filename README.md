@@ -83,7 +83,7 @@ If you want to run only UI cases, run the command:
     npm run ui
 
 ## **Framework Architecture**
-![](architecture.png)
+![](architecture/architecture.png)
 
 ## **Why this framework?**
 - ### **Bridging the gap between Product Owner and QA**
